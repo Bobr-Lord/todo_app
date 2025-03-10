@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
 	"gitlab.com/petprojects9964409/todo_app/internal/config"
@@ -8,7 +9,10 @@ import (
 	"gitlab.com/petprojects9964409/todo_app/internal/repository"
 	"gitlab.com/petprojects9964409/todo_app/internal/server"
 	"gitlab.com/petprojects9964409/todo_app/internal/service"
+	"net/http"
 	"os"
+	"os/signal"
+	"syscall"
 )
 
 func main() {
@@ -34,7 +38,25 @@ func main() {
 	handlers := handler.NewHandler(services)
 
 	srv := server.NewServer()
-	if err := srv.Run(cfg.Port, handlers.InitRoutes()); err != nil {
-		logrus.Fatalf("error starting http server: %v", err)
+	go func() {
+		if err := srv.Run(cfg.Port, handlers.InitRoutes()); err != nil && err != http.ErrServerClosed {
+			logrus.Fatalf("error starting http server: %v", err)
+		}
+	}()
+
+	logrus.Info("Server started")
+
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
+	<-quit
+	logrus.Info("Shutting down server...")
+
+	if err := srv.Shutdown(context.Background()); err != nil {
+		logrus.Errorf("Error shutting down server: %v", err)
 	}
+
+	if err := db.Close(); err != nil {
+		logrus.Errorf("Error closing database: %v", err)
+	}
+	logrus.Info("Server stopped")
 }
