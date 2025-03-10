@@ -1,4 +1,4 @@
-package postgres
+package repository
 
 import (
 	"fmt"
@@ -9,13 +9,21 @@ import (
 	"time"
 )
 
+const (
+	userTable       = "users"
+	todoListsTable  = "todo_lists"
+	usersListsTable = "users_lists"
+	todoItemsTable  = "todo_items"
+	listsItemsTable = "lists_items"
+)
+
 type Config struct {
 	Host     string `yaml:"host"`
 	Port     string `yaml:"port"`
 	User     string `yaml:"user"`
-	Password string `yaml:"password"`
 	Database string `yaml:"database"`
 	SSLMode  string `yaml:"sslmode"`
+	Password string
 }
 
 func New(cfg Config) (*sqlx.DB, error) {

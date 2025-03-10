@@ -1,8 +1,12 @@
 package service
 
-import "gitlab.com/petprojects9964409/todo_app/internal/repository"
+import (
+	"gitlab.com/petprojects9964409/todo_app/internal/models"
+	"gitlab.com/petprojects9964409/todo_app/internal/repository"
+)
 
 type Authorization interface {
+	CreateUser(user models.User) (int, error)
 }
 
 type TodoList interface {
@@ -18,5 +22,7 @@ type Service struct {
 }
 
 func NewService(repos *repository.Repository) *Service {
-	return &Service{}
+	return &Service{
+		Authorization: NewAuthService(repos.Authorization),
+	}
 }

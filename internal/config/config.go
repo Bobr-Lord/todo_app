@@ -3,12 +3,12 @@ package config
 import (
 	"fmt"
 	"github.com/ilyakaznacheev/cleanenv"
-	"gitlab.com/petprojects9964409/todo_app/internal/repository/postgres"
+	"gitlab.com/petprojects9964409/todo_app/internal/repository"
 )
 
 type Config struct {
-	Port     string          `yaml:"port"`
-	Postgres postgres.Config `yaml:"postgres"`
+	Port     string            `yaml:"port"`
+	Postgres repository.Config `yaml:"postgres"`
 }
 
 func NewConfig() (*Config, error) {
