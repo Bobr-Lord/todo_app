@@ -49,6 +49,24 @@ func (s *AuthService) GenerateToken(username, password string) (string, error) {
 	return token.SignedString([]byte(signingKey))
 }
 
+func (s *AuthService) ParseToken(accessToken string) (int, error) {
+	const op = "service.AuthService.ParseToken"
+	token, err := jwt.ParseWithClaims(accessToken, &tokenClaims{}, func(token *jwt.Token) (interface{}, error) {
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, fmt.Errorf("%s: unexpected signing method: %v", op, token.Header["alg"])
+		}
+		return []byte(signingKey), nil
+	})
+	if err != nil {
+		return 0, fmt.Errorf("%s: %w", op, err)
+	}
+	claims, ok := token.Claims.(*tokenClaims)
+	if !ok {
+		return 0, fmt.Errorf("%s: %w", op, jwt.ErrSignatureInvalid)
+	}
+	return claims.UserId, nil
+}
+
 func generatePasswordHash(password string) string {
 	hash := sha1.New()
 	hash.Write([]byte(password))
