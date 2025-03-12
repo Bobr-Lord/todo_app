@@ -4,6 +4,7 @@ import (
 	"github.com/jmoiron/sqlx"
 	"gitlab.com/petprojects9964409/todo_app/internal/models"
 )
+//go:generate mockgen -source=repository.go -destination=mocks/mock_auth.go -package=mocks
 
 type Authorization interface {
 	CreateUser(user models.User) (int, error)
