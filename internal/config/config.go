@@ -9,6 +9,8 @@ import (
 type Config struct {
 	Port       string `env:"SERVER_PORT" envDefault:"8080"`
 	ServerHost string `env:"SERVER_HOST" required:"true"`
+	Salt       string `env:"SALT" required:"true"`
+	SigningKey string `env:"SIGNING_KEY" required:"true"`
 	Postgres   repository.Config
 }
 

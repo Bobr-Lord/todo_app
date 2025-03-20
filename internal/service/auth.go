@@ -6,13 +6,12 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"gitlab.com/petprojects9964409/todo_app/internal/models"
 	"gitlab.com/petprojects9964409/todo_app/internal/repository"
+	"os"
 	"time"
 )
 
 const (
-	salt       = "kasjgfeiuysaocjna,biljkjabdm,czmlwIU"
-	tokenTTL   = time.Hour * 12
-	signingKey = "askjfbw,m.mvxlichig,.nclkhsdjdlkuybcvb"
+	tokenTTL = time.Hour * 12
 )
 
 type tokenClaims struct {
@@ -41,12 +40,12 @@ func (s *AuthService) GenerateToken(username, password string) (string, error) {
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, &tokenClaims{
 		jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(time.Hour * 12).Unix(),
+			ExpiresAt: time.Now().Add(tokenTTL).Unix(),
 			IssuedAt:  time.Now().Unix(),
 		},
 		user.ID,
 	})
-	return token.SignedString([]byte(signingKey))
+	return token.SignedString([]byte(os.Getenv("SIGNING_KEY")))
 }
 
 func (s *AuthService) ParseToken(accessToken string) (int, error) {
@@ -55,7 +54,7 @@ func (s *AuthService) ParseToken(accessToken string) (int, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("%s: unexpected signing method: %v", op, token.Header["alg"])
 		}
-		return []byte(signingKey), nil
+		return []byte(os.Getenv("SIGNING_KEY")), nil
 	})
 	if err != nil {
 		return 0, fmt.Errorf("%s: %w", op, err)
@@ -70,5 +69,5 @@ func (s *AuthService) ParseToken(accessToken string) (int, error) {
 func generatePasswordHash(password string) string {
 	hash := sha1.New()
 	hash.Write([]byte(password))
-	return fmt.Sprintf("%x", hash.Sum([]byte(salt)))
+	return fmt.Sprintf("%x", hash.Sum([]byte(os.Getenv("SALT"))))
 }
