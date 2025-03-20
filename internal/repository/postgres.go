@@ -2,13 +2,17 @@ package repository
 
 import (
 	"fmt"
+
 	"github.com/golang-migrate/migrate"
+
 	// Импортируем пакет для инициализации драйвера PostgreSQL в migrate
 	_ "github.com/golang-migrate/migrate/database/postgres"
-	// Импортируем пакет для инициализации драйвера PostgreSQL в migrate
+
+	"time"
+
+	// Импортируем пакет для инициализации драйвера migrate
 	_ "github.com/golang-migrate/migrate/source/file"
 	"github.com/jmoiron/sqlx"
-	"time"
 )
 
 const (
