@@ -18,13 +18,13 @@ func TestAuthService_CreateUser_Success(t *testing.T) {
 	userService := NewAuthService(mockAuth)
 
 	userServ := models.User{
-		Id:       1,
+		ID:       1,
 		Name:     "test",
 		Username: "testuser",
 		Password: "testpassword",
 	}
 	userRepo := models.User{
-		Id:       1,
+		ID:       1,
 		Name:     "test",
 		Username: "testuser",
 		Password: generatePasswordHash("testpassword"),
@@ -46,13 +46,13 @@ func TestAuthService_CreateUser_Failure(t *testing.T) {
 	userService := NewAuthService(mockAuth)
 
 	userServ := models.User{
-		Id:       1,
+		ID:       1,
 		Name:     "test",
 		Username: "testuser",
 		Password: "testpassword",
 	}
 	userRepo := models.User{
-		Id:       1,
+		ID:       1,
 		Name:     "test",
 		Username: "testuser",
 		Password: generatePasswordHash("testpassword"),
@@ -73,7 +73,7 @@ func TestAuthService_GenerateToken_Success(t *testing.T) {
 	password := "testpassword"
 
 	user := models.User{
-		Id:       1,
+		ID:       1,
 		Name:     username,
 		Username: "testuser",
 		Password: password,

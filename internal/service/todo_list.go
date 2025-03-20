@@ -13,25 +13,25 @@ func NewTodoListService(repo repository.TodoList) *TodoListService {
 	return &TodoListService{repo: repo}
 }
 
-func (s *TodoListService) Create(userId int, list models.TodoList) (int, error) {
-	return s.repo.Create(userId, list)
+func (s *TodoListService) Create(userID int, list models.TodoList) (int, error) {
+	return s.repo.Create(userID, list)
 }
 
-func (s *TodoListService) GetAll(userId int) ([]models.TodoList, error) {
-	return s.repo.GetAll(userId)
+func (s *TodoListService) GetAll(userID int) ([]models.TodoList, error) {
+	return s.repo.GetAll(userID)
 }
 
-func (s *TodoListService) GetById(userId, listId int) (models.TodoList, error) {
-	return s.repo.GetById(userId, listId)
+func (s *TodoListService) GetByID(userID, listID int) (models.TodoList, error) {
+	return s.repo.GetByID(userID, listID)
 }
 
-func (s *TodoListService) Delete(userId, listId int) error {
-	return s.repo.Delete(userId, listId)
+func (s *TodoListService) Delete(userID, listID int) error {
+	return s.repo.Delete(userID, listID)
 }
 
-func (s *TodoListService) Update(userId int, listId int, input models.UpdateListInput) error {
+func (s *TodoListService) Update(userID int, listID int, input models.UpdateListInput) error {
 	if err := input.Validate(); err != nil {
 		return err
 	}
-	return s.repo.Update(userId, listId, input)
+	return s.repo.Update(userID, listID, input)
 }

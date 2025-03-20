@@ -88,76 +88,76 @@ func (m *MockTodoList) EXPECT() *MockTodoListMockRecorder {
 }
 
 // Create mocks base method.
-func (m *MockTodoList) Create(userId int, list models.TodoList) (int, error) {
+func (m *MockTodoList) Create(userID int, list models.TodoList) (int, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Create", userId, list)
+	ret := m.ctrl.Call(m, "Create", userID, list)
 	ret0, _ := ret[0].(int)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // Create indicates an expected call of Create.
-func (mr *MockTodoListMockRecorder) Create(userId, list interface{}) *gomock.Call {
+func (mr *MockTodoListMockRecorder) Create(userID, list interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Create", reflect.TypeOf((*MockTodoList)(nil).Create), userId, list)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Create", reflect.TypeOf((*MockTodoList)(nil).Create), userID, list)
 }
 
 // Delete mocks base method.
-func (m *MockTodoList) Delete(userId, listId int) error {
+func (m *MockTodoList) Delete(userID, listID int) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Delete", userId, listId)
+	ret := m.ctrl.Call(m, "Delete", userID, listID)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // Delete indicates an expected call of Delete.
-func (mr *MockTodoListMockRecorder) Delete(userId, listId interface{}) *gomock.Call {
+func (mr *MockTodoListMockRecorder) Delete(userID, listID interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockTodoList)(nil).Delete), userId, listId)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockTodoList)(nil).Delete), userID, listID)
 }
 
 // GetAll mocks base method.
-func (m *MockTodoList) GetAll(userId int) ([]models.TodoList, error) {
+func (m *MockTodoList) GetAll(userID int) ([]models.TodoList, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetAll", userId)
+	ret := m.ctrl.Call(m, "GetAll", userID)
 	ret0, _ := ret[0].([]models.TodoList)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // GetAll indicates an expected call of GetAll.
-func (mr *MockTodoListMockRecorder) GetAll(userId interface{}) *gomock.Call {
+func (mr *MockTodoListMockRecorder) GetAll(userID interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAll", reflect.TypeOf((*MockTodoList)(nil).GetAll), userId)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAll", reflect.TypeOf((*MockTodoList)(nil).GetAll), userID)
 }
 
-// GetById mocks base method.
-func (m *MockTodoList) GetById(userId, listId int) (models.TodoList, error) {
+// GetByID mocks base method.
+func (m *MockTodoList) GetByID(userID, listID int) (models.TodoList, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetById", userId, listId)
+	ret := m.ctrl.Call(m, "GetByID", userID, listID)
 	ret0, _ := ret[0].(models.TodoList)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// GetById indicates an expected call of GetById.
-func (mr *MockTodoListMockRecorder) GetById(userId, listId interface{}) *gomock.Call {
+// GetByID indicates an expected call of GetByID.
+func (mr *MockTodoListMockRecorder) GetByID(userID, listID interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetById", reflect.TypeOf((*MockTodoList)(nil).GetById), userId, listId)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetByID", reflect.TypeOf((*MockTodoList)(nil).GetByID), userID, listID)
 }
 
 // Update mocks base method.
-func (m *MockTodoList) Update(userId, listId int, input models.UpdateListInput) error {
+func (m *MockTodoList) Update(userID, listID int, input models.UpdateListInput) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Update", userId, listId, input)
+	ret := m.ctrl.Call(m, "Update", userID, listID, input)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // Update indicates an expected call of Update.
-func (mr *MockTodoListMockRecorder) Update(userId, listId, input interface{}) *gomock.Call {
+func (mr *MockTodoListMockRecorder) Update(userID, listID, input interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockTodoList)(nil).Update), userId, listId, input)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockTodoList)(nil).Update), userID, listID, input)
 }
 
 // MockTodoItem is a mock of TodoItem interface.
@@ -184,74 +184,74 @@ func (m *MockTodoItem) EXPECT() *MockTodoItemMockRecorder {
 }
 
 // Create mocks base method.
-func (m *MockTodoItem) Create(listId int, item models.TodoItem) (int, error) {
+func (m *MockTodoItem) Create(listID int, item models.TodoItem) (int, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Create", listId, item)
+	ret := m.ctrl.Call(m, "Create", listID, item)
 	ret0, _ := ret[0].(int)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // Create indicates an expected call of Create.
-func (mr *MockTodoItemMockRecorder) Create(listId, item interface{}) *gomock.Call {
+func (mr *MockTodoItemMockRecorder) Create(listID, item interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Create", reflect.TypeOf((*MockTodoItem)(nil).Create), listId, item)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Create", reflect.TypeOf((*MockTodoItem)(nil).Create), listID, item)
 }
 
 // Delete mocks base method.
-func (m *MockTodoItem) Delete(userId, itemId int) error {
+func (m *MockTodoItem) Delete(userID, itemID int) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Delete", userId, itemId)
+	ret := m.ctrl.Call(m, "Delete", userID, itemID)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // Delete indicates an expected call of Delete.
-func (mr *MockTodoItemMockRecorder) Delete(userId, itemId interface{}) *gomock.Call {
+func (mr *MockTodoItemMockRecorder) Delete(userID, itemID interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockTodoItem)(nil).Delete), userId, itemId)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockTodoItem)(nil).Delete), userID, itemID)
 }
 
 // GetAll mocks base method.
-func (m *MockTodoItem) GetAll(userId, listId int) ([]models.TodoItem, error) {
+func (m *MockTodoItem) GetAll(userID, listID int) ([]models.TodoItem, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetAll", userId, listId)
+	ret := m.ctrl.Call(m, "GetAll", userID, listID)
 	ret0, _ := ret[0].([]models.TodoItem)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // GetAll indicates an expected call of GetAll.
-func (mr *MockTodoItemMockRecorder) GetAll(userId, listId interface{}) *gomock.Call {
+func (mr *MockTodoItemMockRecorder) GetAll(userID, listID interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAll", reflect.TypeOf((*MockTodoItem)(nil).GetAll), userId, listId)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAll", reflect.TypeOf((*MockTodoItem)(nil).GetAll), userID, listID)
 }
 
-// GetById mocks base method.
-func (m *MockTodoItem) GetById(userId, itemId int) (models.TodoItem, error) {
+// GetByID mocks base method.
+func (m *MockTodoItem) GetByID(userID, itemID int) (models.TodoItem, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetById", userId, itemId)
+	ret := m.ctrl.Call(m, "GetByID", userID, itemID)
 	ret0, _ := ret[0].(models.TodoItem)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// GetById indicates an expected call of GetById.
-func (mr *MockTodoItemMockRecorder) GetById(userId, itemId interface{}) *gomock.Call {
+// GetByID indicates an expected call of GetByID.
+func (mr *MockTodoItemMockRecorder) GetByID(userID, itemID interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetById", reflect.TypeOf((*MockTodoItem)(nil).GetById), userId, itemId)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetByID", reflect.TypeOf((*MockTodoItem)(nil).GetByID), userID, itemID)
 }
 
 // Update mocks base method.
-func (m *MockTodoItem) Update(userId, itemId int, input models.UpdateItemInput) error {
+func (m *MockTodoItem) Update(userID, itemID int, input models.UpdateItemInput) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Update", userId, itemId, input)
+	ret := m.ctrl.Call(m, "Update", userID, itemID, input)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // Update indicates an expected call of Update.
-func (mr *MockTodoItemMockRecorder) Update(userId, itemId, input interface{}) *gomock.Call {
+func (mr *MockTodoItemMockRecorder) Update(userID, itemID, input interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockTodoItem)(nil).Update), userId, itemId, input)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockTodoItem)(nil).Update), userID, itemID, input)
 }

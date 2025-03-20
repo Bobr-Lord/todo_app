@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"gitlab.com/petprojects9964409/todo_app/internal/config"
 	"net/http"
 	"time"
 )
@@ -14,9 +15,9 @@ func NewServer() *Server {
 	return &Server{}
 }
 
-func (s *Server) Run(port string, handler http.Handler) error {
+func (s *Server) Run(port string, handler http.Handler, cfg *config.Config) error {
 	s.httpServer = &http.Server{
-		Addr:           port,
+		Addr:           cfg.ServerHost + ":" + port,
 		Handler:        handler,
 		MaxHeaderBytes: 1 << 20,
 		ReadTimeout:    10 * time.Second,

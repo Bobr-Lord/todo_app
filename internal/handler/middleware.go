@@ -23,15 +23,15 @@ func (h *Handler) userIdentity(c *gin.Context) {
 		newErrorResponse(c, http.StatusUnauthorized, "Invalid authorization header")
 		return
 	}
-	userId, err := h.service.ParseToken(headerParts[1])
+	userID, err := h.service.ParseToken(headerParts[1])
 	if err != nil {
 		newErrorResponse(c, http.StatusUnauthorized, "Invalid authorization header")
 		return
 	}
-	c.Set(userCtx, userId)
+	c.Set(userCtx, userID)
 }
 
-func GetUserId(c *gin.Context) (int, error) {
+func GetUserID(c *gin.Context) (int, error) {
 	id, ok := c.Get(userCtx)
 	if !ok {
 		newErrorResponse(c, http.StatusInternalServerError, "No user id")

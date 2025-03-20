@@ -25,7 +25,6 @@ func main() {
 	if err != nil {
 		logrus.Fatal(err)
 	}
-	cfg.Postgres.Password = os.Getenv("DB_PASSWORD")
 
 	db, err := repository.New(cfg.Postgres)
 	if err != nil {
@@ -39,7 +38,7 @@ func main() {
 
 	srv := server.NewServer()
 	go func() {
-		if err := srv.Run(cfg.Port, handlers.InitRoutes()); err != nil && err != http.ErrServerClosed {
+		if err := srv.Run(cfg.Port, handlers.InitRoutes(), cfg); err != nil && err != http.ErrServerClosed {
 			logrus.Fatalf("error starting http server: %v", err)
 		}
 	}()

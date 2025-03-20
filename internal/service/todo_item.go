@@ -14,26 +14,26 @@ func NewTodoItemService(repo repository.TodoItem, listRepo repository.TodoList) 
 	return &TodoItemService{repo: repo, listRepo: listRepo}
 }
 
-func (s *TodoItemService) Create(userId int, listId int, item models.TodoItem) (int, error) {
-	_, err := s.listRepo.GetById(userId, listId)
+func (s *TodoItemService) Create(userID int, listID int, item models.TodoItem) (int, error) {
+	_, err := s.listRepo.GetByID(userID, listID)
 	if err != nil {
 		return 0, err
 	}
-	return s.repo.Create(listId, item)
+	return s.repo.Create(listID, item)
 }
 
-func (s *TodoItemService) GetAll(userId int, listId int) ([]models.TodoItem, error) {
-	return s.repo.GetAll(userId, listId)
+func (s *TodoItemService) GetAll(userID int, listID int) ([]models.TodoItem, error) {
+	return s.repo.GetAll(userID, listID)
 }
 
-func (s *TodoItemService) GetById(userId int, itemId int) (models.TodoItem, error) {
-	return s.repo.GetById(userId, itemId)
+func (s *TodoItemService) GetByID(userID int, itemID int) (models.TodoItem, error) {
+	return s.repo.GetByID(userID, itemID)
 }
 
-func (s *TodoItemService) Delete(userId int, itemId int) error {
-	return s.repo.Delete(userId, itemId)
+func (s *TodoItemService) Delete(userID int, itemID int) error {
+	return s.repo.Delete(userID, itemID)
 }
 
-func (s *TodoItemService) Update(userId int, itemId int, input models.UpdateItemInput) error {
-	return s.repo.Update(userId, itemId, input)
+func (s *TodoItemService) Update(userID int, itemID int, input models.UpdateItemInput) error {
+	return s.repo.Update(userID, itemID, input)
 }

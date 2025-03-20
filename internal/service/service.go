@@ -12,19 +12,19 @@ type Authorization interface {
 }
 
 type TodoList interface {
-	Create(userId int, list models.TodoList) (int, error)
-	GetAll(userId int) ([]models.TodoList, error)
-	GetById(userId, listId int) (models.TodoList, error)
-	Delete(userId, listId int) error
-	Update(userId int, listId int, input models.UpdateListInput) error
+	Create(userID int, list models.TodoList) (int, error)
+	GetAll(userID int) ([]models.TodoList, error)
+	GetByID(userID, listID int) (models.TodoList, error)
+	Delete(userID, listID int) error
+	Update(userID int, listID int, input models.UpdateListInput) error
 }
 
 type TodoItem interface {
-	Create(userId int, listId int, item models.TodoItem) (int, error)
-	GetAll(userId int, listId int) ([]models.TodoItem, error)
-	GetById(userId int, itemId int) (models.TodoItem, error)
-	Delete(userId int, itemId int) error
-	Update(userId int, itemId int, input models.UpdateItemInput) error
+	Create(userID int, listID int, item models.TodoItem) (int, error)
+	GetAll(userID int, listID int) ([]models.TodoItem, error)
+	GetByID(userID int, itemID int) (models.TodoItem, error)
+	Delete(userID int, itemID int) error
+	Update(userID int, itemID int, input models.UpdateItemInput) error
 }
 
 type Service struct {

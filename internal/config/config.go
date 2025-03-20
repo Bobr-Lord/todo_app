@@ -7,14 +7,15 @@ import (
 )
 
 type Config struct {
-	Port     string            `yaml:"port"`
-	Postgres repository.Config `yaml:"postgres"`
+	Port       string `env:"SERVER_PORT" envDefault:"8080"`
+	ServerHost string `env:"SERVER_HOST" required:"true"`
+	Postgres   repository.Config
 }
 
 func NewConfig() (*Config, error) {
 	const op = "config.NewConfig"
 	var cfg Config
-	if err := cleanenv.ReadConfig("./configs/config.yml", &cfg); err != nil {
+	if err := cleanenv.ReadConfig(".env", &cfg); err != nil {
 		return nil, fmt.Errorf("%s: %w", op, err)
 	}
 	return &cfg, nil
