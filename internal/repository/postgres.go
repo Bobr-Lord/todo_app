@@ -2,12 +2,13 @@ package repository
 
 import (
 	"fmt"
-	"time"
-
 	"github.com/golang-migrate/migrate"
+	// Импортируем пакет для инициализации драйвера PostgreSQL в migrate
 	_ "github.com/golang-migrate/migrate/database/postgres"
+	// Импортируем пакет для инициализации драйвера PostgreSQL в migrate
 	_ "github.com/golang-migrate/migrate/source/file"
 	"github.com/jmoiron/sqlx"
+	"time"
 )
 
 const (
@@ -29,12 +30,10 @@ type Config struct {
 
 func New(cfg Config) (*sqlx.DB, error) {
 	const op = "postgres.New"
-	fmt.Printf("%v", cfg)
 	dsn := fmt.Sprintf(
 		"host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
 		cfg.Host, cfg.Port, cfg.User, cfg.Password, cfg.Database, cfg.SSLMode,
 	)
-	fmt.Println("🔍 Строка подключения:", dsn)
 
 	db, err := sqlx.Open("postgres", dsn)
 	if err != nil {

@@ -69,12 +69,7 @@ func TestTodoListService_Failure(t *testing.T) {
 	mockRepo := mocks.NewMockTodoList(ctrl)
 	listService := NewTodoListService(mockRepo)
 	userID := 1
-	spTodoList := []models.TodoList{}
-	spTodoList = append(spTodoList, models.TodoList{
-		ID:          1,
-		Title:       "test",
-		Description: "test",
-	})
+
 	mockRepo.EXPECT().GetAll(userID).Return(nil, errors.New("error")).Times(1)
 	result, err := listService.GetAll(userID)
 	assert.Error(t, err)
@@ -122,10 +117,10 @@ func TestTodoListService_Delete_Success(t *testing.T) {
 	defer ctrl.Finish()
 	mockRepo := mocks.NewMockTodoList(ctrl)
 	listService := NewTodoListService(mockRepo)
-	userId := 1
-	listId := 1
-	mockRepo.EXPECT().Delete(userId, listId).Return(nil).Times(1)
-	err := listService.Delete(userId, listId)
+	userID := 1
+	listID := 1
+	mockRepo.EXPECT().Delete(userID, listID).Return(nil).Times(1)
+	err := listService.Delete(userID, listID)
 	assert.NoError(t, err)
 }
 
@@ -146,16 +141,16 @@ func TestTodoListService_Update_Success(t *testing.T) {
 	defer ctrl.Finish()
 	mockRepo := mocks.NewMockTodoList(ctrl)
 	listService := NewTodoListService(mockRepo)
-	userId := 1
-	listId := 1
+	userID := 1
+	listID := 1
 	title := "title"
 	description := "description"
 	input := models.UpdateListInput{
 		Title:       &title,
 		Description: &description,
 	}
-	mockRepo.EXPECT().Update(userId, listId, input).Return(nil).Times(1)
-	err := listService.Update(userId, listId, input)
+	mockRepo.EXPECT().Update(userID, listID, input).Return(nil).Times(1)
+	err := listService.Update(userID, listID, input)
 	assert.NoError(t, err)
 }
 
@@ -164,15 +159,15 @@ func TestTodoListService_Update_Failure(t *testing.T) {
 	defer ctrl.Finish()
 	mockRepo := mocks.NewMockTodoList(ctrl)
 	listService := NewTodoListService(mockRepo)
-	userId := 1
-	listId := 1
+	userID := 1
+	listID := 1
 	title := "test"
 	description := "test"
 	input := models.UpdateListInput{
 		Title:       &title,
 		Description: &description,
 	}
-	mockRepo.EXPECT().Update(userId, listId, input).Return(errors.New("error"))
-	err := listService.Update(userId, listId, input)
+	mockRepo.EXPECT().Update(userID, listID, input).Return(errors.New("error"))
+	err := listService.Update(userID, listID, input)
 	assert.Error(t, err)
 }

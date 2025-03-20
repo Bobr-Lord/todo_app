@@ -48,7 +48,7 @@ func (h *Handler) getAllLists(c *gin.Context) {
 	c.JSON(http.StatusOK, getAllListResponse{Data: lists})
 }
 
-func (h *Handler) getListById(c *gin.Context) {
+func (h *Handler) getListByID(c *gin.Context) {
 	userID, err := GetUserID(c)
 	if err != nil {
 		return
