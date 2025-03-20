@@ -2,6 +2,7 @@ package repository
 
 import (
 	"fmt"
+	"github.com/sirupsen/logrus"
 
 	"github.com/golang-migrate/migrate"
 
@@ -39,6 +40,8 @@ func New(cfg Config) (*sqlx.DB, error) {
 		cfg.Host, cfg.Port, cfg.User, cfg.Password, cfg.Database, cfg.SSLMode,
 	)
 
+	logrus.Info("dsn: ", dsn)
+
 	db, err := sqlx.Open("postgres", dsn)
 	if err != nil {
 		return nil, fmt.Errorf("%s:  %w", op, err)
@@ -54,6 +57,8 @@ func New(cfg Config) (*sqlx.DB, error) {
 	if err := migration(cfg); err != nil {
 		return nil, fmt.Errorf("%s: %w", op, err)
 	}
+
+	logrus.Info("Postgres connection established")
 
 	return db, nil
 }

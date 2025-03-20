@@ -7,7 +7,6 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
 	"gitlab.com/petprojects9964409/todo_app/internal/config"
 	"gitlab.com/petprojects9964409/todo_app/internal/handler"
@@ -18,9 +17,6 @@ import (
 
 func main() {
 	logrus.SetFormatter(&logrus.JSONFormatter{})
-	if err := godotenv.Load(); err != nil {
-		logrus.Fatalf("Error loading .env file: %s", err.Error())
-	}
 
 	cfg, err := config.NewConfig()
 	if err != nil {

@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"github.com/sirupsen/logrus"
 	"net/http"
 	"time"
 
@@ -24,6 +25,7 @@ func (s *Server) Run(port string, handler http.Handler, cfg *config.Config) erro
 		ReadTimeout:    10 * time.Second,
 		WriteTimeout:   10 * time.Second,
 	}
+	logrus.Infof("server listening on %s", s.httpServer.Addr)
 	return s.httpServer.ListenAndServe()
 }
 

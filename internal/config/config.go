@@ -18,8 +18,9 @@ type Config struct {
 func NewConfig() (*Config, error) {
 	const op = "config.NewConfig"
 	var cfg Config
-	if err := cleanenv.ReadConfig(".env", &cfg); err != nil {
+	if err := cleanenv.ReadEnv(&cfg); err != nil {
 		return nil, fmt.Errorf("%s: %w", op, err)
 	}
 	return &cfg, nil
+
 }
