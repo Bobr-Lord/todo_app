@@ -2,6 +2,11 @@ package main
 
 import (
 	"context"
+	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
+
 	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
 	"gitlab.com/petprojects9964409/todo_app/internal/config"
@@ -9,10 +14,6 @@ import (
 	"gitlab.com/petprojects9964409/todo_app/internal/repository"
 	"gitlab.com/petprojects9964409/todo_app/internal/server"
 	"gitlab.com/petprojects9964409/todo_app/internal/service"
-	"net/http"
-	"os"
-	"os/signal"
-	"syscall"
 )
 
 func main() {

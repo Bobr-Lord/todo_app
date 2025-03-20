@@ -2,11 +2,12 @@ package repository
 
 import (
 	"fmt"
+	"time"
+
 	"github.com/golang-migrate/migrate"
 	_ "github.com/golang-migrate/migrate/database/postgres"
 	_ "github.com/golang-migrate/migrate/source/file"
 	"github.com/jmoiron/sqlx"
-	"time"
 )
 
 const (

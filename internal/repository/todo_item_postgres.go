@@ -2,9 +2,10 @@ package repository
 
 import (
 	"fmt"
+	"strings"
+
 	"github.com/jmoiron/sqlx"
 	"gitlab.com/petprojects9964409/todo_app/internal/models"
-	"strings"
 )
 
 type TodoItemPostgres struct {

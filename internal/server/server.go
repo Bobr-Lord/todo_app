@@ -2,9 +2,10 @@ package server
 
 import (
 	"context"
-	"gitlab.com/petprojects9964409/todo_app/internal/config"
 	"net/http"
 	"time"
+
+	"gitlab.com/petprojects9964409/todo_app/internal/config"
 )
 
 type Server struct {

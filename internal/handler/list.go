@@ -1,10 +1,11 @@
 package handler
 
 import (
-	"github.com/gin-gonic/gin"
-	"gitlab.com/petprojects9964409/todo_app/internal/models"
 	"net/http"
 	"strconv"
+
+	"github.com/gin-gonic/gin"
+	"gitlab.com/petprojects9964409/todo_app/internal/models"
 )
 
 func (h *Handler) createList(c *gin.Context) {

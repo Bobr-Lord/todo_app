@@ -3,11 +3,12 @@ package service
 import (
 	"crypto/sha1"
 	"fmt"
+	"os"
+	"time"
+
 	"github.com/dgrijalva/jwt-go"
 	"gitlab.com/petprojects9964409/todo_app/internal/models"
 	"gitlab.com/petprojects9964409/todo_app/internal/repository"
-	"os"
-	"time"
 )
 
 const (

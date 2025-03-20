@@ -1,3 +1,13 @@
+run:
+  skip-dirs:
+    - "vendor"
+    - "third_party"
+  timeout: 5m
+
+linters-settings:
+  gofmt:
+    simplify: true
+
 linters:
   enable:
     - govet         # Поиск ошибок в коде
@@ -9,7 +19,4 @@ linters:
     - goconst       # Проверка на повторяющиеся строковые/числовые значения
     - gofmt         # Автоформатирование
     - revive        # Расширенный стиль-контроль
-
-exclude:
-  - "/go.mod"
-  - "/go.sum"
+    - goimports

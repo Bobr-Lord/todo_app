@@ -2,11 +2,12 @@ package service
 
 import (
 	"errors"
+	"testing"
+
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 	"gitlab.com/petprojects9964409/todo_app/internal/models"
 	"gitlab.com/petprojects9964409/todo_app/internal/repository/mocks"
-	"testing"
 )
 
 func TestAuthService_CreateUser_Success(t *testing.T) {

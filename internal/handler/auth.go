@@ -1,9 +1,10 @@
 package handler
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"gitlab.com/petprojects9964409/todo_app/internal/models"
-	"net/http"
 )
 
 func (h *Handler) signUp(c *gin.Context) {
