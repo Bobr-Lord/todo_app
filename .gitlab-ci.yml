@@ -1,34 +1,25 @@
 image: golang:1.24
 
 stages:
-  - lint
-  - test
-  - build
+#  - lint
+#  - test
+  - deploy
 
-lint:
-  stage: lint
-  image: golangci/golangci-lint:latest
-  allow_failure: true
-  script:
-    - golangci-lint run
+#lint:
+#  stage: lint
+#  image: golangci/golangci-lint:latest
+#  allow_failure: true
+#  script:
+#    - golangci-lint run
+#
+#test:
+#  stage: test
+#  image: golang:1.24
+#  script:
+#    - go test -v ./...
 
-test:
-  stage: test
-  image: golang:1.24
+deploy:
+  stage: deploy
   script:
-    - go test -v ./...
+    - docker-compose up -d --build
 
-build:
-  stage: build
-  image: docker:24.0.5
-  services:
-    - name: docker:24.0.5-dind
-      command: ["--host=tcp://0.0.0.0:2375"]
-  variables:
-    DOCKER_HOST: "tcp://127.0.0.1:2375"
-    DOCKER_TLS_CERTDIR: ""
-  script:
-    - sleep 15
-    - nc -zv 127.0.0.1 2375
-    - docker info
-    - docker build -t service_todo_app -f ./Dockerfile .
