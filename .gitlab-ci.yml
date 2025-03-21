@@ -1,16 +1,7 @@
-image: golang:1.24
-
-variables:
-  GOFLAGS: "-mod=readonly"
-
 stages:
   - lint
   - test
   - build
-
-before_script:
-  - go version
-  - go mod tidy
 
 lint:
   stage: lint
@@ -21,6 +12,7 @@ lint:
 
 test:
   stage: test
+  image: golang:1.24
   script:
     - go test -v ./...
 
@@ -29,13 +21,14 @@ build:
   image: docker:24.0.5
   services:
     - name: docker:24.0.5-dind
-      command: ["--privileged"]
+      command: ["--privileged"]  # Этот флаг критичен для корректной работы dind
   variables:
     DOCKER_HOST: "tcp://docker:2375"
-    DOCKER_TLS_CERTDIR: "/certs"
+    DOCKER_TLS_CERTDIR: ""        # Отключает TLS для упрощения
     DOCKER_DRIVER: "overlay2"
   script:
-    - sleep 15
-    - nc -zv docker 2375
-    - docker info
+    - sleep 15                    # Дать время DIND для старта
+    - nc -zv docker 2375          # Проверить доступность порта
+    - docker info                 # Убедиться, что Docker работает
     - docker build -t service_todo_app -f ./Dockerfile .
+
