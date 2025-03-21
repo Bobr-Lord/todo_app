@@ -1,11 +1,21 @@
-#stages:
-##  - lint
-##  - test
-#  - build
+stages:
+  - lint
+  - test
+  - build
 
-#variables:
-#  DOCKER_HOST: tcp://docker:2375
-#  DOCKER_TLS_CERTDIR: ""
+lint:
+  stage: lint
+  image: golangci/golangci-lint:latest
+  allow_failure: true
+  script:
+    - golangci-lint run
+
+test:
+  stage: test
+  image: golang:1.24
+  script:
+    - go test -v ./...
+
 
 build:
   stage: build
@@ -15,18 +25,6 @@ build:
   script:
     - docker build -t service_todo_app -f ./Dockerfile .
 
-#lint:
-#  stage: lint
-#  image: golangci/golangci-lint:latest
-#  allow_failure: true
-#  script:
-#    - golangci-lint run
-#
-#test:
-#  stage: test
-#  image: golang:1.24
-#  script:
-#    - go test -v ./...
 
 
 
