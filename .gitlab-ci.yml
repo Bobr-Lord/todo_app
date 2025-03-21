@@ -22,13 +22,13 @@ build:
   services:
     - name: docker:24.0.5-dind
       command: ["--privileged"]
-      privileged: true                # <== Добавлено для корректной работы dind
   variables:
-    DOCKER_HOST: "tcp://localhost:2375"  # <== Исправлено с `docker` на `localhost`
-    DOCKER_TLS_CERTDIR: ""            # <== Отключает TLS для упрощения
+    DOCKER_HOST: "tcp://localhost:2375"
+    DOCKER_TLS_CERTDIR: ""
     DOCKER_DRIVER: "overlay2"
   script:
     - sleep 15
-    - nc -zv localhost 2375           # <== Исправлено с `docker` на `localhost`
+    - nc -zv localhost 2375
     - docker info
     - docker build -t service_todo_app -f ./Dockerfile .
+  privileged: true
