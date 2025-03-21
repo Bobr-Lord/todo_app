@@ -1,25 +1,18 @@
-image: golang:1.24
-
 #stages:
 ##  - lint
 ##  - test
 #  - build
 
-
-default:
-  image: docker:24.0.5
-  services:
-    - docker:24.0.5-dind
-  before_script:
-    - docker info
-
 variables:
-  DOCKER_TLS_CERTDIR: "/certs"
+  DOCKER_HOST: tcp://docker:2375
 
 build:
   stage: build
+  image: docker:24.0.5
+  services:
+    - docker:24.0.5-dind
   script:
-    - docker build -t todo_app -f ./Dockerfile .
+    - docker build -t service_todo_app -f ./Dockerfile .
 
 #lint:
 #  stage: lint

@@ -6,7 +6,7 @@ COPY . .
 
 RUN go mod download
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o server_app ./cmd/todo/main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -o service_todo_app ./cmd/todo/main.go
 
 FROM alpine:3.21
 
@@ -17,5 +17,5 @@ COPY --from=builder /app .
 EXPOSE 8080
 EXPOSE 5432
 
-CMD ["./server_app"]
+CMD ["./service_todo_app"]
 
