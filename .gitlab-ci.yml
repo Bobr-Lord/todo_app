@@ -1,6 +1,16 @@
+image: golang:1.24
+
+variables:
+  GOFLAGS: "-mod=readonly"
+
 stages:
   - lint
-#  - build
+  - test
+  - build
+
+before_script:
+  - go version
+  - go mod tidy
 
 lint:
   stage: lint
@@ -8,18 +18,24 @@ lint:
   allow_failure: true
   script:
     - golangci-lint run
-#build:
-#  stage: build
-#  image: docker:24.0.5
-#  services:
-#    - name: docker:24.0.5-dind
-#      command: ["--privileged"]
-#  variables:
-#    DOCKER_HOST: "tcp://docker:2375"
-#    DOCKER_TLS_CERTDIR: "/certs"
-#    DOCKER_DRIVER: "overlay2"
-#  script:
-#    - sleep 15
-#    - nc -zv docker 2375
-#    - docker info
-#    - docker build -t service_todo_app -f ./Dockerfile .
+
+test:
+  stage: test
+  script:
+    - go test -v ./...
+
+build:
+  stage: build
+  image: docker:24.0.5
+  services:
+    - name: docker:24.0.5-dind
+      command: ["--privileged"]
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+    DOCKER_TLS_CERTDIR: "/certs"
+    DOCKER_DRIVER: "overlay2"
+  script:
+    - sleep 15
+    - nc -zv docker 2375
+    - docker info
+    - docker build -t service_todo_app -f ./Dockerfile .
