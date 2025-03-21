@@ -8,7 +8,6 @@ lint:
   allow_failure: true
   script:
     - golangci-lint run
-#
 #build:
 #  stage: build
 #  image: docker:24.0.5
