@@ -2,9 +2,10 @@ package server
 
 import (
 	"context"
-	"github.com/sirupsen/logrus"
 	"net/http"
 	"time"
+
+	"github.com/sirupsen/logrus"
 
 	"gitlab.com/petprojects9964409/todo_app/internal/config"
 )

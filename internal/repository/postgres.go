@@ -2,6 +2,7 @@ package repository
 
 import (
 	"fmt"
+
 	"github.com/sirupsen/logrus"
 
 	"github.com/golang-migrate/migrate"
