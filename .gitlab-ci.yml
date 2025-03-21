@@ -23,15 +23,14 @@ build:
   image: docker:24.0.5
   services:
     - name: docker:24.0.5-dind
-      command: ["--privileged"]
   variables:
     DOCKER_HOST: "tcp://127.0.0.1:2375"
     DOCKER_TLS_CERTDIR: ""
     DOCKER_DRIVER: "overlay2"
     DOCKERD_ROOTLESS_ROOTLESSKIT_PORT_DRIVER: "slirp4netns"
-
   script:
     - sleep 15
     - nc -zv 127.0.0.1 2375
     - docker info
     - docker build -t service_todo_app -f ./Dockerfile .
+
