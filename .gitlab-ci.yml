@@ -20,24 +20,25 @@ stages:
 
 deploy:
   stage: deploy
-  image: docker:24.0.5
+  image: docker:24.0.5-dind
   services:
     - name: docker:24.0.5-dind
       alias: docker
   script:
-    # Обновление пакетов и установка curl
+    # Устанавливаем необходимые утилиты, включая curl
     - apt-get update && apt-get install -y curl
 
-    # Скачивание и установка Docker Compose
+    # Скачиваем и устанавливаем Docker Compose
     - curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
     - chmod +x /usr/local/bin/docker-compose
 
-    # Проверка версии Docker Compose
+    # Проверяем версию Docker Compose
     - docker-compose --version
 
     # Устанавливаем переменную окружения DOCKER_HOST для подключения к Docker daemon
     - export DOCKER_HOST=tcp://docker:2375
 
-    # Запуск Docker Compose с флагом -d (background) и --build для пересборки
+    # Запускаем контейнеры с Docker Compose
     - docker-compose up -d --build
+
 
