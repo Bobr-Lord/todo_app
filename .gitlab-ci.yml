@@ -1,9 +1,9 @@
 image: golang:1.24
 
-stages:
-#  - lint
-#  - test
-  - build
+#stages:
+##  - lint
+##  - test
+#  - build
 
 
 default:
