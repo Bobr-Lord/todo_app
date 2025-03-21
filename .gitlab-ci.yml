@@ -31,4 +31,3 @@ build:
     - nc -zv localhost 2375
     - docker info
     - docker build -t service_todo_app -f ./Dockerfile .
-  privileged: true
